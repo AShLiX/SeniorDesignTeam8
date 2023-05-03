@@ -47,3 +47,53 @@ The following APIs provide more direct access to underlying MAVLink messages/typ
 Param: Raw access to get and set parameters.
 MissionRaw: Direct access to MAVLink mission items.
 MavlinkPassthrough: Provides full/direct MAVLink access
+
+### MAVSDK-Python
+
+[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions?query=branch%3Amain)
+
+This is the Python wrapper for MAVSDK.
+
+The Python wrapper is based on a gRPC client communicating with the gRPC server written in C++. To use the Python wrapper the gRPC server called "backend" needs to be running on the same system. The wrapper is essentially auto-generated from the message definitions ([proto files](https://github.com/mavlink/MAVSDK-Proto)).
+
+
+#### Important Notes
+
+- Python 3.7+ is required (because the wrapper is based on [asyncio](https://docs.python.org/3.7/library/asyncio.html)).
+- You may need to run `pip3` instead of `pip` and `python3` instead of `python`, depending of your system defaults.
+- Auterion has a [Getting started with MAVSDK-Python](https://auterion.com/getting-started-with-mavsdk-python/) guide if you're a beginner and not sure where to start.
+
+#### API Reference docs
+
+-> [API Reference documentation](http://mavsdk-python-docs.s3-website.eu-central-1.amazonaws.com/).
+
+#### Install using pip from PyPi
+
+To install mavsdk-python, simply run:
+
+```sh
+pip3 install mavsdk
+```
+
+The package contains `mavsdk_server` already (previously called "backend"), which is started automatically when connecting (e.g. `await drone.connect()`). Have a look at the examples to see it used in practice. It will be something like:
+
+```python
+from mavsdk import System
+
+...
+
+drone = System()
+await drone.connect(system_address="udp://:14540")
+```
+
+Note: `System()` takes two named parameters: `mavsdk_server_address` and `port`. When left empty, they default to `None` and `50051`, respectively, and `mavsdk_server -p 50051` is run by `await drone.connect()`. If `mavsdk_server_address` is set (e.g. to "localhost"), then `await drone.connect()` will not start the embedded `mavsdk_server` and will try to connect to a server running at this address. This is useful for platforms where `mavsdk_server` does not come embedded, for debugging purposes, and for running `mavsdk_server` in a place different than where the MAVSDK-Python script is run.
+
+#### Run the examples
+
+Once the package has been installed, the examples can be run:
+
+```
+examples/takeoff_and_land.py
+```
+
+The examples assume that the embedded `mavsdk_server` binary can be run. In some cases (e.g. on Raspberry Pi), it may be necessary to run `mavsdk_server` manually, and therefore to set `mavsdk_server_address='localhost'` as described above.
