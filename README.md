@@ -6,7 +6,7 @@ This project implements an automation system for a drone that enables it to auto
 
 Using the PX4 flight controller, a custom system was developed to control the drone's flight path. The PX4 flight controller is an open-source autopilot system that offers a dependable and modifiable platform for controlling the flight parameters of the drone. The system was designed to receive data from the PixyCam2 and adjust the position, altitude, and velocity of the drone accordingly.
 
-Our drone products do not require the controller or control software recommended by HoverGames Drone Kit such as remote control or QGroundControl. We can write our own drone code through the MavSDK library, which supports c++ and python.
+Our drone products do not require the controller or control software recommended by HoverGames Drone Kit such as remote control or QGroundControl. We can write our own drone code through the MAVSDK library, which supports c++ and python.
 
 ## MAVSDK
 
