@@ -10,7 +10,7 @@ The libraries can be used onboard a drone on a companion computer or on the grou
 
 MAVSDK is cross-platform: Linux, macOS, Windows, Android and iOS.
 
-### MAVSDK c++ API Overview
+### MAVSDK-C++
 
 Mavsdk is the main library class. API consumers use Mavsdk to discover and access vehicles (System objects), which in turn provide access to all other drone information and control objects (e.g. Telemetry, Mission etc.).
 
@@ -49,8 +49,6 @@ MissionRaw: Direct access to MAVLink mission items.
 MavlinkPassthrough: Provides full/direct MAVLink access
 
 ### MAVSDK-Python
-
-[![GitHub Actions Status](https://github.com/mavlink/MAVSDK-Python/workflows/PyPi%20Upload/badge.svg?branch=main)](https://github.com/mavlink/MAVSDK-Python/actions?query=branch%3Amain)
 
 This is the Python wrapper for MAVSDK.
 
